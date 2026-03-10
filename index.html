@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AkaLearn</title>
+  <meta name="description" content="AkaLearn - La academia que transforma vidas. Cursos de Emprendedurismo, Negocios, Derecho, Matemáticas, Cocina, Oficios y más.">
+  <link rel="stylesheet" href="./css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Three.js Canvas Background -->
+  <canvas id="three-canvas"></canvas>
+
+  <!-- Modal for Course Details -->
+  <div id="course-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+      <div class="modal-body">
+        <img id="modal-img" src="" alt="">
+        <div class="modal-info">
+          <span id="modal-category" class="modal-category"></span>
+          <h2 id="modal-title"></h2>
+          <p id="modal-desc"></p>
+          <div class="modal-meta">
+            <span id="modal-duration"></span>
+            <span id="modal-price"></span>
+          </div>
+          <button class="btn-modal">Inscribirse Ahora</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header id="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand">
+        <div class="logo">AL</div>
+        <span class="brand-name">AkaLearn</span>
+      </a>
+      <nav aria-label="Navegación principal">
+        <a href="index.html" class="active">Inicio</a>
+        <a href="catalogo.html">Cursos</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Banner Section -->
+  <section class="banner" aria-label="Portada principal">
+    <div class="banner-slides" aria-hidden="true">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&h=1080&fit=crop')"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&h=1080&fit=crop')"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1920&h=1080&fit=crop')"></div>
+    </div>
+
+    <div class="banner-content">
+      <div class="hero-logo-box">
+        <span class="hero-logo">AL</span>
+      </div>
+      <h1>AkaLearn</h1>
+      <h2>La academia que transforma vidas</h2>
+      <p>Domina nuevas habilidades. Emprendedurismo, Negocios, Derecho Laboral, Matemáticas, Cocina, Oficios y muchos más campos.</p>
+      <p class="minimo-frase">El conocimiento es poder. Empieza hoy.</p>
+      <button class="btn-hero" onclick="document.getElementById('cursos-destacados').scrollIntoView({behavior:'smooth'})">Explorar Cursos</button>
+    </div>
+  </section>
+
+  <main class="container">
+    <!-- Featured Courses Section -->
+    <section id="cursos-destacados" class="section">
+      <div class="section-header">
+        <h2>Cursos Destacados</h2>
+        <p>Descubre nuestros cursos más populares</p>
+      </div>
+      <div class="courses-grid" id="featured-courses"></div>
+      <div class="section-cta">
+        <a href="catalogo.html" class="btn btn-outline">Ver Todos los Cursos</a>
+      </div>
+    </section>
+
+    <!-- Free Courses / Hot Sale Section -->
+    <section id="cursos-gratis" class="section section-dark">
+      <div class="section-header">
+        <h2>🔥 Cursos Gratis & Hot Sale</h2>
+        <p>Aprovecha nuestras promociones especiales</p>
+      </div>
+      <div class="promo-grid" id="free-courses" style="grid-template-columns: repeat(4, 1fr);"></div>
+    </section>
+
+    <!-- Payment Methods / Hot Sale Promotions -->
+    <section id="metodos-pago" class="section">
+      <div class="section-header">
+        <h2>Promociones Hot Sale</h2>
+        <p>Formas de pago y beneficios exclusivos</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card card-promo">
+          <div class="promo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+              <line x1="7" y1="7" x2="7.01" y2="7"></line>
+            </svg>
+          </div>
+          <h3>50% OFF</h3>
+          <p>En todos los cursos de Emprendedurismo</p>
+          <span class="promo-code">Código: EMPRENDE50</span>
+        </div>
+        <div class="card card-promo">
+          <div class="promo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+              <line x1="1" y1="10" x2="23" y2="10"></line>
+            </svg>
+          </div>
+          <h3>3 Cuotas Sin Interés</h3>
+          <p>Con todas las tarjetas de crédito</p>
+          <span class="promo-code">Visa, Mastercard, Amex</span>
+        </div>
+        <div class="card card-promo">
+          <div class="promo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3>Descuento Grupal</h3>
+          <p>20% OFF para grupos de 5+ personas</p>
+          <span class="promo-code">Cursos corporativos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section with Animations -->
+    <section id="categorias" class="section">
+      <div class="section-header">
+        <h2>Explora por Categoría</h2>
+        <p>Encuentra el curso perfecto para ti</p>
+      </div>
+      <div class="categories-wrapper">
+        <div class="category-row">
+          <a href="catalogo.html" class="category-card-large" data-category="Emprendedurismo">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">🚀</span>
+              <h3><span>E</span><span>m</span><span>p</span><span>r</span><span>e</span><span>n</span><span>d</span><span>e</span><span>d</span><span>u</span><span>r</span><span>i</span><span>s</span><span>m</span><span>o</span></h3>
+              <p>12 cursos disponibles</p>
+            </div>
+          </a>
+          <a href="catalogo.html" class="category-card-large" data-category="Negocios">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">💼</span>
+              <h3><span>N</span><span>e</span><span>g</span><span>o</span><span>c</span><span>i</span><span>o</span><span>s</span><span> </span><span>y</span><span> </span><span>M</span><span>a</span><span>n</span><span>a</span><span>g</span><span>e</span><span>m</span><span>e</span><span>n</span><span>t</span></h3>
+              <p>8 cursos disponibles</p>
+            </div>
+          </a>
+        </div>
+        <div class="category-row">
+          <a href="catalogo.html" class="category-card-large" data-category="Derecho">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">⚖️</span>
+              <h3><span>D</span><span>e</span><span>r</span><span>e</span><span>c</span><span>h</span><span>o</span><span> </span><span>L</span><span>a</span><span>b</span><span>o</span><span>r</span><span>a</span><span>l</span></h3>
+              <p>5 cursos disponibles</p>
+            </div>
+          </a>
+          <a href="catalogo.html" class="category-card-large" data-category="Matemáticas">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">📐</span>
+              <h3><span>M</span><span>a</span><span>t</span><span>e</span><span>m</span><span>á</span><span>t</span><span>i</span><span>c</span><span>a</span><span>s</span></h3>
+              <p>10 cursos disponibles</p>
+            </div>
+          </a>
+        </div>
+        <div class="category-row">
+          <a href="catalogo.html" class="category-card-large" data-category="Cocina">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">👨‍🍳</span>
+              <h3><span>C</span><span>o</span><span>c</span><span>i</span><span>n</span><span>a</span><span> </span><span>y</span><span> </span><span>G</span><span>a</span><span>s</span><span>t</span><span>r</span><span>o</span><span>n</span><span>o</span><span>m</span><span>í</span><span>a</span></h3>
+              <p>15 cursos disponibles</p>
+            </div>
+          </a>
+          <a href="catalogo.html" class="category-card-large" data-category="Oficios">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">🔧</span>
+              <h3><span>O</span><span>f</span><span>i</span><span>c</span><span>i</span><span>o</span><span>s</span><span> </span><span>y</span><span> </span><span>T</span><span>e</span><span>c</span><span>n</span><span>i</span><span>c</span><span>a</span><span>s</span></h3>
+              <p>9 cursos disponibles</p>
+            </div>
+          </a>
+        </div>
+        <div class="category-row">
+          <a href="catalogo.html" class="category-card-large" data-category="Diseño">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">🎨</span>
+              <h3><span>D</span><span>i</span><span>s</span><span>e</span><span>ñ</span><span>o</span><span> </span><span>y</span><span> </span><span>C</span><span>r</span><span>e</span><span>a</span><span>c</span><span>i</span><span>ó</span><span>n</span></h3>
+              <p>14 cursos disponibles</p>
+            </div>
+          </a>
+          <a href="catalogo.html" class="category-card-large" data-category="Salud">
+            <div class="category-glow"></div>
+            <div class="category-content">
+              <span class="category-icon">💪</span>
+              <h3><span>S</span><span>a</span><span>l</span><span>u</span><span>d</span><span> </span><span>y</span><span> </span><span>B</span><span>i</span><span>e</span><span>n</span><span>e</span><span>s</span><span>t</span><span>a</span><span>r</span></h3>
+              <p>8 cursos disponibles</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Final Carousel with Slogan -->
+  <section class="final-carousel" aria-label="Slogan final">
+    <div class="final-slides">
+      <div class="final-slide active">
+        <h2>"El conocimiento es la única inversión que siempre crece"</h2>
+        <p>Únete a más de 50,000 estudiantes</p>
+      </div>
+      <div class="final-slide">
+        <h2>"Transforma tu futuro hoy"</h2>
+        <p>Aprende sin límites</p>
+      </div>
+      <div class="final-slide">
+        <h2>"La educación es el arma más poderosa"</h2>
+        <p>Empieza tu journey ahora</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="logo">AL</div>
+        <span>AkaLearn</span>
+        <p class="footer-slogan">Aprende sin límites</p>
+      </div>
+      <div class="footer-links">
+        <h4>Explorar</h4>
+        <a href="index.html">Inicio</a>
+        <a href="catalogo.html">Cursos</a>
+        <a href="#">Becas</a>
+        <a href="#">Empresas</a>
+      </div>
+      <div class="footer-links">
+        <h4>Legal</h4>
+        <a href="#">Términos</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+      <div class="footer-links">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@akalearn.com">hola@akalearn.com</a>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 <strong>AkaLearn</strong> — La academia que transforma vidas.
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="./js/function.js" defer></script>
+  <script>
+    // Courses data
+    const cursos = [
+      {id:1,titulo:"Emprendedurismo Digital",categoria:"Emprendedurismo",precio:149.99,gratis:false,imagen:"https://images.unsplash.com/photo-1553484771-371a605b060b?w=600&h=400&fit=crop",descripcion:"Aprende a crear tu negocio digital desde cero",duracion:"40 horas"},
+      {id:2,titulo:"Negocios y Management",categoria:"Negocios",precio:199.99,gratis:false,imagen:"https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=400&fit=crop",descripcion:"Domina las estrategias de gestión empresarial",duracion:"60 horas"},
+      {id:3,titulo:"Derecho Laboral Básico",categoria:"Derecho",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop",descripcion:"Fundamentos del derecho laboral argentino",duracion:"25 horas"},
+      {id:4,titulo:"Matemáticas Avanzadas",categoria:"Matemáticas",precio:89.99,gratis:false,imagen:"https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop",descripcion:"Cálculo diferencial e integral paso a paso",duracion:"80 horas"},
+      {id:5,titulo:"Cocina Profesional",categoria:"Cocina",precio:129.99,gratis:false,imagen:"https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&h=400&fit=crop",descripcion:"Técnicas culinarias de alta cocina",duracion:"50 horas"},
+      {id:6,titulo:"Electricidad Básica",categoria:"Oficios",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&h=400&fit=crop",descripcion:"Instalaciones eléctricas residenciales",duracion:"35 horas"},
+      {id:7,titulo:"Marketing Digital",categoria:"Marketing",precio:179.99,gratis:false,imagen:"https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",descripcion:"Estrategias de marketing para el siglo XXI",duracion:"45 horas"},
+      {id:8,titulo:"Desarrollo Personal",categoria:"Desarrollo Personal",precio:49.99,gratis:false,imagen:"https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",descripcion:"Gestión del tiempo y productividad",duracion:"20 horas"},
+      {id:9,titulo:"Contabilidad Básica",categoria:"Negocios",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&h=400&fit=crop",descripcion:"Fundamentos de contabilidad para emprendedores",duracion:"30 horas"},
+      {id:10,titulo:"Cocina Argentina",categoria:"Cocina",precio:99.99,gratis:false,imagen:"https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop",descripcion:"Recetas tradicionales argentinas",duracion:"40 horas"},
+      {id:11,titulo:"Plomería Residencial",categoria:"Oficios",precio:79.99,gratis:false,imagen:"https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop",descripcion:"Instalaciones y reparaciones plumberas",duracion:"35 horas"},
+      {id:12,titulo:"Álgebra Lineal",categoria:"Matemáticas",precio:109.99,gratis:false,imagen:"https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?w=600&h=400&fit=crop",descripcion:"Matrices, vectores y espacios vectoriales",duracion:"55 horas"},
+      {id:13,titulo:"Diseño Gráfico",categoria:"Diseño",precio:159.99,gratis:false,imagen:"https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&h=400&fit=crop",descripcion:"Photoshop, Illustrator y más",duracion:"65 horas"},
+      {id:14,titulo:"Programación Python",categoria:"Programación",precio:189.99,gratis:false,imagen:"https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&h=400&fit=crop",descripcion:"Aprende a programar desde cero",duracion:"70 horas"},
+      {id:15,titulo:"Fotografía Profesional",categoria:"Arte",precio:129.99,gratis:false,imagen:"https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=600&h=400&fit=crop",descripcion:"Técnicas de fotografía profesional",duracion:"45 horas"},
+      {id:16,titulo:"Pasta Casera Italiana",categoria:"Cocina",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop",descripcion:"Recetas auténticas de pasta italiana",duracion:"15 horas"},
+      {id:17,titulo:"Finanzas Personales",categoria:"Negocios",precio:89.99,gratis:false,imagen:"https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=600&h=400&fit=crop",descripcion:"Cómo manejar tu dinero efectivamente",duracion:"30 horas"},
+      {id:18,titulo:"Cerrajería Básica",categoria:"Oficios",precio:69.99,gratis:false,imagen:"https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=600&h=400&fit=crop",descripcion:"Técnicas de cerrajería residencial",duracion:"25 horas"},
+      {id:19,titulo:"Historia Universal",categoria:"Historia",precio:79.99,gratis:false,imagen:"https://images.unsplash.com/photo-1461360370896-922624d12a74?w=600&h=400&fit=crop",descripcion:"Desde la antigüedad hasta el presente",duracion:"50 horas"},
+      {id:20,titulo:"Yoga para Principiantes",categoria:"Salud",precio:59.99,gratis:false,imagen:"https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=400&fit=crop",descripcion:"Posturas y respiración para comenzar",duracion:"20 horas"},
+      {id:21,titulo:"Inglés Básico",categoria:"Idiomas",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&h=400&fit=crop",descripcion:"Fundamentos del idioma inglés",duracion:"40 horas"},
+      {id:22,titulo:"Mecánica Automotriz",categoria:"Oficios",precio:149.99,gratis:false,imagen:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&h=400&fit=crop",descripcion:"Mantenimiento básico de vehículos",duracion:"60 horas"},
+      {id:23,titulo:"Nutrición y Dietética",categoria:"Salud",precio:119.99,gratis:false,imagen:"https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&h=400&fit=crop",descripcion:"Alimentación saludable y equilibrada",duracion:"45 horas"},
+      {id:24,titulo:"Economía para Todos",categoria:"Economía",precio:99.99,gratis:false,imagen:"https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&h=400&fit=crop",descripcion:"Conceptos económicos fundamentales",duracion:"35 horas"},
+      {id:25,titulo:"Decoración de Interiores",categoria:"Diseño",precio:139.99,gratis:false,imagen:"https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&h=400&fit=crop",descripcion:"Diseño de espacios habitables",duracion:"40 horas"},
+      {id:26,titulo:"Canto y Técnica Vocal",categoria:"Arte",precio:89.99,gratis:false,imagen:"https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=600&h=400&fit=crop",descripcion:"Técnicas para mejorar tu voz",duracion:"30 horas"},
+      {id:27,titulo:"Pintura Artística",categoria:"Arte",precio:109.99,gratis:false,imagen:"https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&h=400&fit=crop",descripcion:"Técnicas de pintura al óleo",duracion:"50 horas"},
+      {id:28,titulo:"Gestión de Proyectos",categoria:"Negocios",precio:169.99,gratis:false,imagen:"https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=600&h=400&fit=crop",descripcion:"Metodologías ágiles y tradicionales",duracion:"55 horas"},
+      {id:29,titulo:"Jardinería y Botanical",categoria:"Naturaleza",precio:69.99,gratis:false,imagen:"https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&h=400&fit=crop",descripcion:"Cultivo de plantas y jardines",duracion:"25 horas"},
+      {id:30,titulo:"Física Cuántica Intro",categoria:"Ciencia",precio:129.99,gratis:false,imagen:"https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&h=400&fit=crop",descripcion:"Introducción al mundo cuántico",duracion:"40 horas"},
+      {id:31,titulo:"Escribanía y Redacción",categoria:"Idioma",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&h=400&fit=crop",descripcion:"Mejora tu escritura académica",duracion:"20 horas"},
+      {id:32,titulo:"Maquillaje Profesional",categoria:"Moda",precio:119.99,gratis:false,imagen:"https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600&h=400&fit=crop",descripcion:"Técnicas de makeup profesional",duracion:"35 horas"},
+      {id:33,titulo:"Animación Digital",categoria:"Diseño",precio:199.99,gratis:false,imagen:"https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=400&fit=crop",descripcion:"Creación de animaciones 2D y 3D",duracion:"80 horas"},
+      {id:34,titulo:"Astronomía Amateur",categoria:"Ciencia",precio:79.99,gratis:false,imagen:"https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=600&h=400&fit=crop",descripcion:"Observación del cielo estrellado",duracion:"30 horas"},
+      {id:35,titulo:"Carpintería Básica",categoria:"Oficios",precio:99.99,gratis:false,imagen:"https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=400&fit=crop",descripcion:"Trabajos en madera para el hogar",duracion:"40 horas"},
+      {id:36,titulo:"Pedagogía y Docencia",categoria:"Educación",precio:139.99,gratis:false,imagen:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&h=400&fit=crop",descripcion:"Métodos de enseñanza efectivos",duracion:"50 horas"},
+      {id:37,titulo:"Repostería y Postres",categoria:"Cocina",precio:109.99,gratis:false,imagen:"https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&h=400&fit=crop",descripcion:"Dulces y tartas profesionales",duracion:"45 horas"},
+      {id:38,titulo:"Introducción a la Filosofía",categoria:"Filosofía",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&h=400&fit=crop",descripcion:"Grandes pensadores y sus ideas",duracion:"30 horas"},
+      {id:39,titulo:"Community Manager",categoria:"Marketing",precio:159.99,gratis:false,imagen:"https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop",descripcion:"Gestión de redes sociales",duracion:"40 horas"},
+      {id:40,titulo:"Psicología General",categoria:"Psicología",precio:149.99,gratis:false,imagen:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",descripcion:"Fundamentos de la mente humana",duracion:"60 horas"},
+      {id:41,titulo:"Costura y Confección",categoria:"Moda",precio:89.99,gratis:false,imagen:"https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop",descripcion:"Creación de prendas de vestir",duracion:"35 horas"},
+      {id:42,titulo:"Ajedrez Estratégico",categoria:"Juegos",precio:59.99,gratis:false,imagen:"https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=600&h=400&fit=crop",descripcion:"Tácticas y estrategias del ajedrez",duracion:"25 horas"},
+      {id:43,titulo:"Biología Molecular",categoria:"Ciencia",precio:169.99,gratis:false,imagen:"https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&h=400&fit=crop",descripcion:"El mundo de las células",duracion:"55 horas"},
+      {id:44,titulo:"Barismo y Café",categoria:"Gastronomía",precio:79.99,gratis:false,imagen:"https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&h=400&fit=crop",descripcion:"Preparaciones de café profesional",duracion:"20 horas"},
+      {id:45,titulo:"Criminología Básica",categoria:"Derecho",precio:129.99,gratis:false,imagen:"https://images.unsplash.com/photo-1453945619913-79ec89a82c51?w=600&h=400&fit=crop",descripcion:"Estudio del crimen y criminals",duracion:"45 horas"},
+      {id:46,titulo:"Estrategias de Venta",categoria:"Negocios",precio:139.99,gratis:false,imagen:"https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=600&h=400&fit=crop",descripcion:"Técnicas de ventas efectivas",duracion:"35 horas"},
+      {id:47,titulo:"Caligrafía y Lettering",categoria:"Arte",precio:0,gratis:true,imagen:"https://images.unsplash.com/photo-1516961642265-531546e84af2?w=600&h=400&fit=crop",descripcion:"Arte de la escritura beautiful",duracion:"15 horas"},
+      {id:48,titulo:"Cine y Dirección Audiovisual",categoria:"Arte",precio:179.99,gratis:false,imagen:"https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&h=400&fit=crop",descripcion:"Producción cinematográfica básica",duracion:"65 horas"},
+      {id:49,titulo:"Meditación y Mindfulness",categoria:"Salud",precio:49.99,gratis:false,imagen:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop",descripcion:"Técnicas de relajación mental",duracion:"20 horas"},
+      {id:50,titulo:"E-commerce y Tiendas Online",categoria:"Negocios",precio:189.99,gratis:false,imagen:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",descripcion:"Cómo crear tu tienda virtual",duracion:"50 horas"}
+    ];
+
+    // Modal functions
+    function openModal(curso) {
+      document.getElementById('modal-img').src = curso.imagen;
+      document.getElementById('modal-category').textContent = curso.categoria;
+      document.getElementById('modal-title').textContent = curso.titulo;
+      document.getElementById('modal-desc').textContent = curso.descripcion;
+      document.getElementById('modal-duration').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> ' + curso.duracion;
+      document.getElementById('modal-price').textContent = curso.gratis ? 'GRATIS' : '$' + curso.precio.toFixed(2);
+      document.getElementById('course-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('course-modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on outside click
+    document.getElementById('course-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Create course card with modal
+    function createCourseCard(curso) {
+      const card = document.createElement('article');
+      card.className = 'course-card';
+      card.innerHTML = `
+        <div class="course-image">
+          <img src="${curso.imagen}" alt="${curso.titulo}" loading="lazy">
+          ${curso.gratis ? '<span class="course-badge gratis">GRATIS</span>' : ''}
+        </div>
+        <div class="course-content">
+          <span class="course-category">${curso.categoria}</span>
+          <h3>${curso.titulo}</h3>
+          <p>${curso.descripcion}</p>
+          <div class="course-meta">
+            <span class="course-duration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              ${curso.duracion}
+            </span>
+            <span class="course-price">${curso.gratis ? 'GRATIS' : '$' + curso.precio.toFixed(2)}</span>
+          </div>
+          <button class="btn-course" onclick='openModal(${JSON.stringify(curso)})'>Ver Curso</button>
+        </div>
+      `;
+      return card;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const featuredGrid = document.getElementById('featured-courses');
+      const freeGrid = document.getElementById('free-courses');
+      
+      // Featured courses (first 4 paid courses)
+      const featured = cursos.filter(c => !c.gratis).slice(0, 4);
+      featured.forEach(curso => {
+        featuredGrid.appendChild(createCourseCard(curso));
+      });
+      
+      // Free courses (first 4)
+      const free = cursos.filter(c => c.gratis).slice(0, 4);
+      free.forEach(curso => {
+        freeGrid.appendChild(createCourseCard(curso));
+      });
+
+      // Animate category letters on scroll
+      const observerOptions = { threshold: 0.2, rootMargin: '0px' };
+      const categoryObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const letters = entry.target.querySelectorAll('h3 span');
+            letters.forEach((letter, i) => {
+              setTimeout(() => {
+                letter.style.opacity = '1';
+                letter.style.transform = 'translateY(0)';
+              }, i * 50);
+            });
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.category-card-large').forEach(card => {
+        categoryObserver.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>
+
